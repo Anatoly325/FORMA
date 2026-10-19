@@ -1,0 +1,14 @@
+{
+  "name": "forma-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Форма Учеватова Кая (FORMA): executable research prototype of an agent-oriented language",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node examples/demo.mjs"
+  }
+}
