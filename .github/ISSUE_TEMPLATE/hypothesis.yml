@@ -1,0 +1,38 @@
+name: Hypothesis or experiment
+description: Propose a falsifiable improvement to FORMA
+title: "[Hypothesis] "
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis and expected benefit
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Reasoning, tradeoffs and alternatives
+    validations:
+      required: true
+  - type: textarea
+    id: experiment
+    attributes:
+      label: Experiment, baseline, environment and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: falsification
+    attributes:
+      label: What would disprove this hypothesis?
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence level (self-reported)
+      options:
+        - Idea — untested
+        - Reproduced — concrete observations
+        - Measured — comparison with results
+    validations:
+      required: true
