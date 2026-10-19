@@ -1,0 +1,7 @@
+[
+  {
+    "op": "replace_body",
+    "function": "amounts_equal",
+    "body": "{ abs(expected - paid) <= 1 }"
+  }
+]

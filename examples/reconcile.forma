@@ -1,0 +1,47 @@
+// Exact nonnegative amounts in the currency's agreed minor unit.
+// No FX conversion, refund netting or partial-payment aggregation.
+record Order { order_id: Text, currency: Text, amount: Int }
+record Payment { order_id: Text, currency: Text, amount: Int }
+record Input { orders: List<Order>, payments: List<Payment> }
+record Key { order_id: Text, currency: Text }
+record Row { key: Key, orders: List<Order>, payments: List<Payment>, status: Text }
+record Report {
+  matched: List<Row>, unpaid: List<Row>, unmatched: List<Row>,
+  discrepancies: List<Row>, ambiguous: List<Row>
+}
+
+fn amounts_equal(expected: Int, paid: Int) -> Bool {
+  expected == paid
+}
+
+fn classify(key: Key, orders: List<Order>, payments: List<Payment>) -> Row {
+  let os = filter(orders, o => o.order_id == key.order_id && o.currency == key.currency);
+  let ps = filter(payments, p => p.order_id == key.order_id && p.currency == key.currency);
+  let status = if len(os) > 1 || len(ps) > 1 { "ambiguous" }
+    else if len(os) == 0 { "unmatched" }
+    else if len(ps) == 0 { "unpaid" }
+    else if amounts_equal(os[0].amount, ps[0].amount) { "matched" }
+    else { "discrepancy" };
+  Row { key: key, orders: os, payments: ps, status: status }
+}
+
+tool reconcile_orders(input: Input) -> Report
+requires all(input.orders, o => o.amount >= 0 && len(o.order_id) > 0 && len(o.currency) == 3);
+requires all(input.payments, p => p.amount >= 0 && len(p.order_id) > 0 && len(p.currency) == 3);
+ensures len(result.matched) + len(result.unpaid) + len(result.unmatched) + len(result.discrepancies) + len(result.ambiguous)
+  == len(unique(concat(map(input.orders, o => Key { order_id: o.order_id, currency: o.currency }),
+                       map(input.payments, p => Key { order_id: p.order_id, currency: p.currency }))));
+{
+  let keys = unique(concat(
+    map(input.orders, o => Key { order_id: o.order_id, currency: o.currency }),
+    map(input.payments, p => Key { order_id: p.order_id, currency: p.currency })
+  ));
+  let rows = map(keys, key => classify(key, input.orders, input.payments));
+  Report {
+    matched: filter(rows, r => r.status == "matched"),
+    unpaid: filter(rows, r => r.status == "unpaid"),
+    unmatched: filter(rows, r => r.status == "unmatched"),
+    discrepancies: filter(rows, r => r.status == "discrepancy"),
+    ambiguous: filter(rows, r => r.status == "ambiguous")
+  }
+}

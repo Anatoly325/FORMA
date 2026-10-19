@@ -1,0 +1,19 @@
+fn factorial(n: Int) -> Int
+requires n >= 0;
+ensures result >= 1;
+{
+  if n == 0 { 1 } else { n * factorial(n - 1) }
+}
+
+tool factorial_tool(n: Int) -> Int { factorial(n) }
+
+tool squares(count: Int) -> List<Int> {
+  map(range(count), n => n * n)
+}
+
+tool total_nonnegative(values: List<Int>) -> Int
+requires all(values, v => v >= 0);
+ensures result >= 0;
+{
+  fold(values, 0, (acc, value) => acc + value)
+}

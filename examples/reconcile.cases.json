@@ -1,0 +1,768 @@
+[
+  {
+    "name": "empty",
+    "args": {
+      "input": {
+        "orders": [],
+        "payments": []
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "exact-match",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "matched"
+        }
+      ],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "unpaid-order",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [],
+          "status": "unpaid"
+        }
+      ],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "unmatched-payment",
+    "args": {
+      "input": {
+        "orders": [],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "unmatched"
+        }
+      ],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "amount-discrepancy",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "110"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "110"
+            }
+          ],
+          "status": "discrepancy"
+        }
+      ],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "duplicate-orders",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            },
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "ambiguous"
+        }
+      ]
+    }
+  },
+  {
+    "name": "duplicate-payments",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            },
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "ambiguous"
+        }
+      ]
+    }
+  },
+  {
+    "name": "duplicates-on-both-sides",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            },
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            },
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "ambiguous"
+        }
+      ]
+    }
+  },
+  {
+    "name": "duplicate-without-counterpart",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            },
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [],
+          "status": "ambiguous"
+        }
+      ]
+    }
+  },
+  {
+    "name": "currency-is-part-of-key",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "EUR",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [],
+      "unpaid": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [],
+          "status": "unpaid"
+        }
+      ],
+      "unmatched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "EUR"
+          },
+          "orders": [],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "EUR",
+              "amount": "100"
+            }
+          ],
+          "status": "unmatched"
+        }
+      ],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "large-exact-integer",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "9007199254740993123456789"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "9007199254740993123456789"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "9007199254740993123456789"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "9007199254740993123456789"
+            }
+          ],
+          "status": "matched"
+        }
+      ],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "zero-amount",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "0"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "0"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "0"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "0"
+            }
+          ],
+          "status": "matched"
+        }
+      ],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "stable-order",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "B",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          },
+          {
+            "order_id": "B",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [
+        {
+          "key": {
+            "order_id": "B",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "B",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "B",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "matched"
+        },
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "status": "matched"
+        }
+      ],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  },
+  {
+    "name": "negative-amount",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "-1"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_PRECONDITION"
+  },
+  {
+    "name": "invalid-currency-length",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "US",
+            "amount": "100"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_PRECONDITION"
+  },
+  {
+    "name": "empty-order-id",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_PRECONDITION"
+  },
+  {
+    "name": "missing-field",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_INPUT_FIELDS"
+  },
+  {
+    "name": "noncanonical-integer-string",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "01"
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_INPUT"
+  },
+  {
+    "name": "bool-is-not-money",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": true
+          }
+        ],
+        "payments": []
+      }
+    },
+    "expectError": "E_INPUT"
+  }
+]

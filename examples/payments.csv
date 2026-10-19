@@ -1,0 +1,5 @@
+order_id,currency,amount
+O-100,USD,12000
+O-102,EUR,910
+O-103,USD,500
+O-999,USD,700

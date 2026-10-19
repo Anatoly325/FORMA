@@ -1,0 +1,28 @@
+{
+  "input": {
+    "orders": [
+      {
+        "order_id": "A",
+        "currency": "USD",
+        "amount": "100"
+      },
+      {
+        "order_id": "B",
+        "currency": "USD",
+        "amount": "100"
+      }
+    ],
+    "payments": [
+      {
+        "order_id": "A",
+        "currency": "USD",
+        "amount": "100"
+      },
+      {
+        "order_id": "C",
+        "currency": "USD",
+        "amount": "100"
+      }
+    ]
+  }
+}

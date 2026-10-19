@@ -1,0 +1,52 @@
+[
+  {
+    "name": "new-policy-one-minor-unit",
+    "args": {
+      "input": {
+        "orders": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "100"
+          }
+        ],
+        "payments": [
+          {
+            "order_id": "A",
+            "currency": "USD",
+            "amount": "101"
+          }
+        ]
+      }
+    },
+    "expect": {
+      "matched": [
+        {
+          "key": {
+            "order_id": "A",
+            "currency": "USD"
+          },
+          "orders": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "100"
+            }
+          ],
+          "payments": [
+            {
+              "order_id": "A",
+              "currency": "USD",
+              "amount": "101"
+            }
+          ],
+          "status": "matched"
+        }
+      ],
+      "unpaid": [],
+      "unmatched": [],
+      "discrepancies": [],
+      "ambiguous": []
+    }
+  }
+]
