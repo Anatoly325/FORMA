@@ -1,0 +1,99 @@
+{
+  "engine": "forma-prototype/0.1.0",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "architecture": "x64",
+  "mode": "scripted CLI workflow; no LLM calls or spawned AI agents",
+  "csv": {
+    "orders": 5,
+    "payments": 4
+  },
+  "baselineCases": 19,
+  "revisedCases": 20,
+  "initialCounts": {
+    "matched": 1,
+    "unpaid": 1,
+    "unmatched": 1,
+    "discrepancies": 1,
+    "ambiguous": 1
+  },
+  "revisions": {
+    "initial": "adff0832d3aab7eb1892c55aa19c7a77f721ec182dcff547c9e55ebf551ef344",
+    "revised": "3081efcaa9aae07604f337e077093c79fec30f6ab787686393681d1e03c06bff"
+  },
+  "changedFunctions": [
+    "amounts_equal"
+  ],
+  "freshProcessReuse": true,
+  "oldRevisionPreserved": true,
+  "llmTokenSavings": "not measured",
+  "steps": [
+    {
+      "step": "inspect-orders-csv",
+      "status": "passed"
+    },
+    {
+      "step": "inspect-payments-csv",
+      "status": "passed"
+    },
+    {
+      "step": "typed-order-import",
+      "status": "passed"
+    },
+    {
+      "step": "typed-payment-import",
+      "status": "passed"
+    },
+    {
+      "step": "static-check",
+      "status": "passed"
+    },
+    {
+      "step": "baseline-acceptance",
+      "status": "passed"
+    },
+    {
+      "step": "register",
+      "status": "passed"
+    },
+    {
+      "step": "discover-in-new-process",
+      "status": "passed"
+    },
+    {
+      "step": "reuse-in-new-process",
+      "status": "passed"
+    },
+    {
+      "step": "reject-invalid-type",
+      "status": "expected-rejection",
+      "code": "E_TYPE"
+    },
+    {
+      "step": "new-requirement-fails-on-old-code",
+      "status": "expected-rejection",
+      "code": "E_TEST"
+    },
+    {
+      "step": "propose-one-function-change",
+      "status": "passed"
+    },
+    {
+      "step": "accept-checked-revision",
+      "status": "passed"
+    },
+    {
+      "step": "new-revision-meets-requirement",
+      "status": "passed"
+    },
+    {
+      "step": "old-revision-keeps-old-behavior",
+      "status": "passed"
+    },
+    {
+      "step": "reject-stale-acceptance",
+      "status": "expected-rejection",
+      "code": "E_CONFLICT"
+    }
+  ]
+}

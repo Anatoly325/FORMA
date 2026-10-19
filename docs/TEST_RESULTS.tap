@@ -1,0 +1,322 @@
+TAP version 13
+# Subtest: reconciliation acceptance suite: all 19 cases
+ok 1 - reconciliation acceptance suite: all 19 cases
+  ---
+  duration_ms: 17.67851
+  type: 'test'
+  ...
+# Subtest: register, discover by interface and reuse in a fresh process
+ok 2 - register, discover by interface and reuse in a fresh process
+  ---
+  duration_ms: 140.00774
+  type: 'test'
+  ...
+# Subtest: body replacement preserves old revision and requires explicit acceptance
+ok 3 - body replacement preserves old revision and requires explicit acceptance
+  ---
+  duration_ms: 43.718727
+  type: 'test'
+  ...
+# Subtest: invalid types or failing baseline cases cannot change the accepted head
+ok 4 - invalid types or failing baseline cases cannot change the accepted head
+  ---
+  duration_ms: 25.042301
+  type: 'test'
+  ...
+# Subtest: failed registration does not create a callable tool
+ok 5 - failed registration does not create a callable tool
+  ---
+  duration_ms: 6.287664
+  type: 'test'
+  ...
+# Subtest: competing candidates do not silently overwrite each other
+ok 6 - competing candidates do not silently overwrite each other
+  ---
+  duration_ms: 28.155359
+  type: 'test'
+  ...
+# Subtest: two independent writer processes cannot both accept the same base
+ok 7 - two independent writer processes cannot both accept the same base
+  ---
+  duration_ms: 144.318731
+  type: 'test'
+  ...
+# Subtest: artifact corruption is detected before execution
+ok 8 - artifact corruption is detected before execution
+  ---
+  duration_ms: 13.710044
+  type: 'test'
+  ...
+# Subtest: accept rechecks stored cases and blocks removal of the baseline
+ok 9 - accept rechecks stored cases and blocks removal of the baseline
+  ---
+  duration_ms: 12.426433
+  type: 'test'
+  ...
+# Subtest: CLI exposes versioned machine-readable help and inspection
+ok 10 - CLI exposes versioned machine-readable help and inspection
+  ---
+  duration_ms: 158.430419
+  type: 'test'
+  ...
+# Subtest: CLI pure probe runs existing helpers without a new artifact
+ok 11 - CLI pure probe runs existing helpers without a new artifact
+  ---
+  duration_ms: 82.485374
+  type: 'test'
+  ...
+# Subtest: CLI rejects unknown flags and surfaces errors on stderr with nonzero status
+ok 12 - CLI rejects unknown flags and surfaces errors on stderr with nonzero status
+  ---
+  duration_ms: 182.510924
+  type: 'test'
+  ...
+# Subtest: recursion and exact integers beyond IEEE-754
+ok 13 - recursion and exact integers beyond IEEE-754
+  ---
+  duration_ms: 7.168062
+  type: 'test'
+  ...
+# Subtest: division truncates toward zero; remainder follows dividend
+ok 14 - division truncates toward zero; remainder follows dividend
+  ---
+  duration_ms: 1.482109
+  type: 'test'
+  ...
+# Subtest: immutable bindings, annotated empty lists and nested record equality
+ok 15 - immutable bindings, annotated empty lists and nested record equality
+  ---
+  duration_ms: 0.674364
+  type: 'test'
+  ...
+# Subtest: list mapping, filtering, flat_map and folds
+ok 16 - list mapping, filtering, flat_map and folds
+  ---
+  duration_ms: 1.149689
+  type: 'test'
+  ...
+# Subtest: named callbacks are checked and callable
+ok 17 - named callbacks are checked and callable
+  ---
+  duration_ms: 1.704324
+  type: 'test'
+  ...
+# Subtest: Text uses Unicode code points for len and split-empty
+ok 18 - Text uses Unicode code points for len and split-empty
+  ---
+  duration_ms: 0.946304
+  type: 'test'
+  ...
+# Subtest: short-circuit operators and branch laziness
+ok 19 - short-circuit operators and branch laziness
+  ---
+  duration_ms: 0.521715
+  type: 'test'
+  ...
+# Subtest: preconditions and postconditions run, with structured requirement ids
+ok 20 - preconditions and postconditions run, with structured requirement ids
+  ---
+  duration_ms: 0.614725
+  type: 'test'
+  ...
+# Subtest: division, bounds and resource failures are explicit
+ok 21 - division, bounds and resource failures are explicit
+  ---
+  duration_ms: 2.232329
+  type: 'test'
+  ...
+# Subtest: nonterminating recursion stops on fuel or call depth
+ok 22 - nonterminating recursion stops on fuel or call depth
+  ---
+  duration_ms: 2.296855
+  type: 'test'
+  ...
+# Subtest: Unit is explicit, and JSON never coerces boolean to Int
+ok 23 - Unit is explicit, and JSON never coerces boolean to Int
+  ---
+  duration_ms: 1.501038
+  type: 'test'
+  ...
+# Subtest: JSON numeric lexemes cannot silently round into valid Int inputs
+ok 24 - JSON numeric lexemes cannot silently round into valid Int inputs
+  ---
+  duration_ms: 0.438239
+  type: 'test'
+  ...
+# Subtest: strict JSON fields include prototype-like names without pollution
+ok 25 - strict JSON fields include prototype-like names without pollution
+  ---
+  duration_ms: 0.520903
+  type: 'test'
+  ...
+# Subtest: recursive record schemas use references and data depth is bounded
+ok 26 - recursive record schemas use references and data depth is bounded
+  ---
+  duration_ms: 0.858822
+  type: 'test'
+  ...
+# Subtest: formatting and comments do not change the semantic digest
+ok 27 - formatting and comments do not change the semantic digest
+  ---
+  duration_ms: 0.793534
+  type: 'test'
+  ...
+# Subtest: static rejection: mixed arithmetic
+ok 28 - static rejection: mixed arithmetic
+  ---
+  duration_ms: 0.286531
+  type: 'test'
+  ...
+# Subtest: static rejection: nominal record mismatch
+ok 29 - static rejection: nominal record mismatch
+  ---
+  duration_ms: 0.426361
+  type: 'test'
+  ...
+# Subtest: static rejection: inconsistent branches
+ok 30 - static rejection: inconsistent branches
+  ---
+  duration_ms: 0.240902
+  type: 'test'
+  ...
+# Subtest: static rejection: missing constructor field
+ok 31 - static rejection: missing constructor field
+  ---
+  duration_ms: 0.156475
+  type: 'test'
+  ...
+# Subtest: static rejection: duplicate field
+ok 32 - static rejection: duplicate field
+  ---
+  duration_ms: 0.157016
+  type: 'test'
+  ...
+# Subtest: static rejection: unknown type
+ok 33 - static rejection: unknown type
+  ---
+  duration_ms: 0.192169
+  type: 'test'
+  ...
+# Subtest: static rejection: unknown function
+ok 34 - static rejection: unknown function
+  ---
+  duration_ms: 0.167993
+  type: 'test'
+  ...
+# Subtest: static rejection: wrong arity
+ok 35 - static rejection: wrong arity
+  ---
+  duration_ms: 0.168684
+  type: 'test'
+  ...
+# Subtest: static rejection: untyped empty list
+ok 36 - static rejection: untyped empty list
+  ---
+  duration_ms: 0.166561
+  type: 'test'
+  ...
+# Subtest: static rejection: reserved binding
+ok 37 - static rejection: reserved binding
+  ---
+  duration_ms: 0.206551
+  type: 'test'
+  ...
+# Subtest: static rejection: local shadow
+ok 38 - static rejection: local shadow
+  ---
+  duration_ms: 0.194953
+  type: 'test'
+  ...
+# Subtest: static rejection: bad predicate type
+ok 39 - static rejection: bad predicate type
+  ---
+  duration_ms: 0.154953
+  type: 'test'
+  ...
+# Subtest: static rejection: function equality
+ok 40 - static rejection: function equality
+  ---
+  duration_ms: 0.226291
+  type: 'test'
+  ...
+# Subtest: static rejection: no external effects
+ok 41 - static rejection: no external effects
+  ---
+  duration_ms: 0.185389
+  type: 'test'
+  ...
+# Subtest: static rejection: malformed source
+ok 42 - static rejection: malformed source
+  ---
+  duration_ms: 0.192931
+  type: 'test'
+  ...
+# Subtest: syntax diagnostics identify source location
+ok 43 - syntax diagnostics identify source location
+  ---
+  duration_ms: 0.385059
+  type: 'test'
+  ...
+# Subtest: deeply nested source is rejected before host stack exhaustion
+ok 44 - deeply nested source is rejected before host stack exhaustion
+  ---
+  duration_ms: 5.137108
+  type: 'test'
+  ...
+# Subtest: CSV preserves quotes, commas, multiline cells and CRLF
+ok 45 - CSV preserves quotes, commas, multiline cells and CRLF
+  ---
+  duration_ms: 1.965456
+  type: 'test'
+  ...
+# Subtest: CSV inspection is explicitly a sample, without guessed types
+ok 46 - CSV inspection is explicitly a sample, without guessed types
+  ---
+  duration_ms: 0.217067
+  type: 'test'
+  ...
+# Subtest: CSV import uses declared types with exact Int values
+ok 47 - CSV import uses declared types with exact Int values
+  ---
+  duration_ms: 2.377396
+  type: 'test'
+  ...
+# Subtest: malformed CSV is rejected: "a,a\\n1,2"
+ok 48 - malformed CSV is rejected: "a,a\\n1,2"
+  ---
+  duration_ms: 0.131358
+  type: 'test'
+  ...
+# Subtest: malformed CSV is rejected: "a,b\\n1"
+ok 49 - malformed CSV is rejected: "a,b\\n1"
+  ---
+  duration_ms: 0.105299
+  type: 'test'
+  ...
+# Subtest: malformed CSV is rejected: "a\\n\\"open"
+ok 50 - malformed CSV is rejected: "a\\n\\"open"
+  ---
+  duration_ms: 0.121062
+  type: 'test'
+  ...
+# Subtest: malformed CSV is rejected: "a\\nx\\"y"
+ok 51 - malformed CSV is rejected: "a\\nx\\"y"
+  ---
+  duration_ms: 0.084317
+  type: 'test'
+  ...
+# Subtest: malformed CSV is rejected: "a\\n\\"x\\"trailing"
+ok 52 - malformed CSV is rejected: "a\\n\\"x\\"trailing"
+  ---
+  duration_ms: 0.121833
+  type: 'test'
+  ...
+1..52
+# tests 52
+# suites 0
+# pass 52
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 556.628778
